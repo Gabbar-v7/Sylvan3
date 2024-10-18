@@ -8,16 +8,19 @@
 
 #base-header li {
   list-style: none;
+
+  transition: scale 0.3s ease;
+}
+
+#base-header li:hover {
+  transform: scale(1.2);
+  color: white;
 }
 
 #base-header a {
   text-decoration: none;
   color: #fff;
   font-size: 1rem;
-}
-
-#base-header a:hover {
-  color: #00eaff;
 }
 
 #base-header .navbar {
@@ -33,6 +36,15 @@
 #base-header .navbar .logo a {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+#base-header .navbar .logo {
+  transition: scale 0.3s ease;
+}
+
+#base-header .navbar .logo:hover {
+  transform: scale(1.05);
+  color: white;
 }
 
 #base-header .navbar .nav ul {
@@ -73,7 +85,7 @@
 
 #base-header .highlight:hover {
   transform: scale(1.05);
-  color: #000;
+  color: black;
 }
 
 #base-header .nav-phone {
