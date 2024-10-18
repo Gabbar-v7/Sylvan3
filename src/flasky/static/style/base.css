@@ -8,6 +8,8 @@
 
 #base-header {
   border-radius: 20px;
+  position: relative;
+  padding: 0 2rem;
 }
 
 li {
@@ -22,11 +24,6 @@ a {
 
 a:hover {
   color: #00eaff;
-}
-
-header {
-  position: relative;
-  padding: 0 2rem;
 }
 
 .navbar {
@@ -150,10 +147,15 @@ header {
 
   .navbar .menu {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 
   .navbar .menu i {
     display: inline-block;
+    font-size: 1.5rem;
+    color: white; /* Ensure the icon is visible against the background */
   }
 
   .navbar .highlight {
@@ -173,7 +175,6 @@ header {
 .black {
   color: black !important;
 }
-
 .black-bg {
   background-color: black !important;
 }
