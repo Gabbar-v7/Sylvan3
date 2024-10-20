@@ -51,8 +51,10 @@ class UserHandler:
                                              phone, password, user_type))
             self.conn.commit()
             print("Success: User Created Successfully.")
+            return True
         else:
             print("Error: Email or Phone Already Exists.")
+            return False
 
     def get_user(self, user_id=None, name=None, email=None, phone=None, password=None, user_type=None, query_type=' AND '):
         filters = []

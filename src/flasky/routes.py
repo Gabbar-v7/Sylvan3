@@ -34,9 +34,24 @@ def login():
             return redirect(url_for('login'))
 
 
-@app.route('/sign-up')
+@app.route('/sign-up', methods=['GET', 'POST'])
 def signup():
-    return "sing-up"
+    if request.method == 'GET':
+        return render_template('sign_up.html')
+    else:
+        name = request.form.get('name')
+        phone = request.form.get('phone')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        if not (name and phone and email and password):
+            flash("Fields cannot be empty")
+            return redirect(url_for('signup'))
+        elif userHandler.new_user(name, email, phone, password):
+            session['user_id'] = userHandler.get_user(email=email, phone=phone)
+            return redirect(url_for('index'))
+        else:
+            flash("Email or phone already exists")
+            return redirect(url_for('login'))
 
 
 @app.route('/logout')
