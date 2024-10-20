@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import datetime
+from src.tools.encryption import hash
 
 DataBase = "database.db"
 
@@ -13,7 +14,7 @@ def merge(key_names, values, pop_key: str = None):
 
 class UserHandler:
     def __init__(self):
-        self.conn = sqlite3.connect(DataBase)
+        self.conn = sqlite3.connect(DataBase, check_same_thread=False)
         self.create_user_table()
 
     def create_user_table(self):
@@ -40,6 +41,7 @@ class UserHandler:
         cur = self.conn.execute(check_query, (email, phone))
 
         if not cur.fetchone():
+            password = hash(password)
             # If not, create the new user
             insert_query = '''
             INSERT INTO users (name, email, phone, password, user_type)
@@ -69,6 +71,7 @@ class UserHandler:
             filters.append("phone = ?")
             params.append(phone)
         if password:
+            password = hash(password)
             filters.append("password = ?")
             params.append(password)
         if user_type:
@@ -105,6 +108,7 @@ class UserHandler:
             updates.append("phone = ?")
             params.append(phone)
         if password:
+            password = hash(password)
             updates.append("password = ?")
             params.append(password)
         if user_type:

@@ -1,8 +1,10 @@
 from flask import Flask, request, render_template, url_for, redirect, session, flash
 from flask_cors import cross_origin, CORS
 from src.datahandler.dbClasses import UserHandler
+from keys import FLASK_SESSION_KEY
 
 app = Flask(__name__)
+app.secret_key = FLASK_SESSION_KEY
 CORS(app)
 
 userHandler = UserHandler()
@@ -11,7 +13,7 @@ userHandler = UserHandler()
 @app.route('/')
 def index():
     if session.get('user_id'):
-        return render_template
+        return render_template('base.html')
     else:
         return redirect(url_for('login'))
 
@@ -24,9 +26,23 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
         user = userHandler.get_user(email=email, password=password)
-        if user:
-            session['user_id'] = user['user_id']
+        if user and email and password:
+            session['user_id'] = user[0]['user_id']
             return redirect(url_for("index"))
         else:
             flash("Email or password did not match")
             return redirect(url_for('login'))
+
+
+@app.route('/sign-up')
+def signup():
+    return "sing-up"
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+
+userHandler.new_user("Gabbar", "asd@gmail.com", "912771811", "asd", )
