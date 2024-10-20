@@ -19,9 +19,8 @@
     <link rel="stylesheet" href="/static/style/base.css" />
     {% block head %} {% endblock %}
   </head>
-  <body>
+  <body id="base-body">
     <!-- Nav Bar -->
-
     <header id="base-header" class="black-bg">
       <div class="navbar">
         <div class="logo">
@@ -53,7 +52,7 @@
 
     <!-- Nav Bar Ends -->
 
-    {% block body %} {% endblock %}
+    {% include 'components/flash_card.html' %} {% block body %} {% endblock %}
   </body>
   <script src="/static/script/base.js"></script>
   {% block script %} {% endblock %}
