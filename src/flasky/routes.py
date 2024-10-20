@@ -13,7 +13,11 @@ userHandler = UserHandler()
 @app.route('/')
 def index():
     if session.get('user_id'):
-        return render_template('base.html')
+        flash('Changes have been saved successfully!', 'success')
+        flash('You have 3 new messages in your inbox.', 'info')
+        flash('Don\'t forget to save your data.', 'warning')
+        flash('The server is not respoasdanding, try again later.', 'danger')
+        return render_template('components/flash_card.html')
     else:
         return redirect(url_for('login'))
 

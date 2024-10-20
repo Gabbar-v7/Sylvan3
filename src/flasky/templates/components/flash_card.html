@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flask Flash Messages</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+   <style>body {
+    font-family: "Open Sans", sans-serif;
+    line-height: normal;
+    background: #e9f0f4;
+    padding: 0;
+    margin: 0;
+    position: relative; /* To position overlay relative to body */
+  }
+  
+  .flash-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* To make sure the flash messages overlay other content */
+    padding: 10px;
+  }
+  
+  #flash-container .alert {
+    margin: 0;
+    margin-bottom: 15px; /* Add space between flash cards */
+    width: 300px; /* Adjust width as needed */
+    position: relative;
+    animation: slide-down 0.5s ease-out;
+  }
+  
+  /* Slide-down effect */
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Rest of your styles for alerts, icons, etc. */
+  
+  .alert-dismissable {
+    padding-right: 35px;
+  }
+  
+  .close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.2;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  
+  .alert .icon {
+    font-size: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+    text-align: center;
+    width: 25px;
+    display: inline-block;
+  }
+  
+  /* Success, warning, info, danger alert styles remain the same */
+  </style>
+  </head>
+  <body>
+    <div id="flash-container" class="flash-overlay">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-white rounded alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+          </button>
+          <div class="icon">
+            <!-- Use different icons for each category -->
+            {% if category == 'success' %}
+            <i class="fa fa-check"></i>
+            {% elif category == 'info' %}
+            <i class="fa fa-info-circle"></i>
+            {% elif category == 'warning' %}
+            <i class="fa fa-warning"></i>
+            {% elif category == 'danger' %}
+            <i class="fa fa-times-circle"></i>
+            {% endif %}
+          </div>
+          <strong>{{ category|capitalize }}!</strong> {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </div>
+</body>      
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+          $(".close").click(function () {
+            $(this).parent().fadeOut();
+          });
+        });
+      </script>
+      
+  </body>
+</html>
