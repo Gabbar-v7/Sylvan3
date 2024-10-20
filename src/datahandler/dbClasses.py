@@ -11,7 +11,7 @@ def merge(key_names, values, pop_key: str = None):
     return value
 
 
-class userHandler:
+class UserHandler:
     def __init__(self):
         self.conn = sqlite3.connect(DataBase)
         self.create_user_table()
@@ -144,15 +144,3 @@ class userHandler:
 
     def __del__(self):
         self.conn.close()
-
-
-# Example usage
-db = userHandler()
-print(db.new_user(name="John Doe", email="john@example.com",
-      phone="1234567890", password="secret123"))
-print(db.new_user(name="Jane Doe", email="john@example.com",
-      phone="0987654321", password="secret456"))  # Duplicate email
-print(db.new_user(name="Alice", email="alice@example.com",
-      phone="1234567890", password="secret789"))    # Duplicate phone
-
-print(db.get_user(user_id=1))
