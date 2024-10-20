@@ -41,6 +41,10 @@ def login():
 @app.route('/sign-up', methods=['GET', 'POST'])
 def signup():
     if request.method == 'GET':
+        flash('Changes have been saved successfully!', 'success')
+        flash('You have 3 new messages in your inbox.', 'info')
+        flash('Don\'t forget to save your data.', 'warning')
+        flash('The server is not respoasdanding, try again later.', 'danger')
         return render_template('sign_up.html')
     else:
         name = request.form.get('name')
