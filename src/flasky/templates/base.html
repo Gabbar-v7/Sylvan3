@@ -20,6 +20,8 @@
     {% block head %} {% endblock %}
   </head>
   <body id="base-body">
+    {% include 'components/flash_card.html' %}
+
     <!-- Nav Bar -->
     <header id="base-header" class="black-bg">
       <div class="navbar">
@@ -52,7 +54,7 @@
 
     <!-- Nav Bar Ends -->
 
-    {% include 'components/flash_card.html' %} {% block body %} {% endblock %}
+    {% block body %} {% endblock %}
   </body>
   <script src="/static/script/base.js"></script>
   {% block script %} {% endblock %}
