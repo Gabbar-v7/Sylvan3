@@ -9,6 +9,8 @@ CORS(app)
 
 userHandler = UserHandler()
 
+# success info warning danger
+
 
 @app.route('/')
 def index():
@@ -30,7 +32,7 @@ def login():
             session['user_id'] = user[0]['user_id']
             return redirect(url_for("index"))
         else:
-            flash("Email or password did not match")
+            flash("Email or password did not match", "warning")
             return redirect(url_for('login'))
 
 
@@ -44,13 +46,13 @@ def signup():
         email = request.form.get('email')
         password = request.form.get('password')
         if not (name and phone and email and password):
-            flash("Fields cannot be empty")
+            flash("Fields cannot be empty", "warning")
             return redirect(url_for('signup'))
         elif userHandler.new_user(name, email, phone, password):
             session['user_id'] = userHandler.get_user(email=email, phone=phone)
             return redirect(url_for('index'))
         else:
-            flash("Email or phone already exists")
+            flash("Email or phone already exists", "warning")
             return redirect(url_for('login'))
 
 
