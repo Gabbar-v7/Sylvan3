@@ -37,7 +37,6 @@ Alternatively, add images by position the cursor on the next line and either dra
 
 - OS Version: <!-- [e.g. Windows 11, macOS 15] -->
 - Browser Version: <!-- [e.g. Chrome 109.0.5414.165, Safari 18, NA] -->
-- CRUD: <!-- If built from code enter branch, release link as [DETAIL](LINK) or Filename ReleaseTag from releases e.g. CRUD.V.0.1.0.exe V-0.1.0 -->
 
 ### Smartphone (please complete the following information)
 
@@ -46,7 +45,6 @@ Alternatively, add images by position the cursor on the next line and either dra
 - Device: <!-- [e.g. iPhone 12, Samsung Galaxy S21] -->
 - OS Version: <!-- [e.g. iOS 14.4, Android 14] -->
 - Browser Version: <!-- [e.g. Chrome 10.0, Safari 15.2, NA] -->
-- CRUD: <!-- If built from code enter branch or release link as [DETAIL](LINK) or Filename ReleaseTag from releases e.g. CRUD.V.0.1.0.apk V-0.1.0 -->
 
 **Additional context :**
 
