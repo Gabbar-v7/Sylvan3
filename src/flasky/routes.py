@@ -9,14 +9,12 @@ CORS(app)
 
 userHandler = UserHandler()
 
+# success info warning danger
+
 
 @app.route('/')
 def index():
     if session.get('user_id'):
-        flash('Changes have been saved successfully!', 'success')
-        flash('You have 3 new messages in your inbox.', 'info')
-        flash('Don\'t forget to save your data.', 'warning')
-        flash('The server is not respoasdanding, try again later.', 'danger')
         return render_template('base.html')
     else:
         return redirect(url_for('login'))
@@ -25,10 +23,6 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        flash('Changes have been saved successfully!', 'success')
-        flash('You have 3 new messages in your inbox.', 'info')
-        flash('Don\'t forget to save your data.', 'warning')
-        flash('The server is not respoasdanding, try again later.', 'danger')
         return render_template('login.html')
     else:
         email = request.form.get("email")
@@ -38,7 +32,7 @@ def login():
             session['user_id'] = user[0]['user_id']
             return redirect(url_for("index"))
         else:
-            flash("Email or password did not match")
+            flash("Email or password did not match", "warning")
             return redirect(url_for('login'))
 
 
@@ -52,13 +46,13 @@ def signup():
         email = request.form.get('email')
         password = request.form.get('password')
         if not (name and phone and email and password):
-            flash("Fields cannot be empty")
+            flash("Fields cannot be empty", "warning")
             return redirect(url_for('signup'))
         elif userHandler.new_user(name, email, phone, password):
             session['user_id'] = userHandler.get_user(email=email, phone=phone)
             return redirect(url_for('index'))
         else:
-            flash("Email or phone already exists")
+            flash("Email or phone already exists", "warning")
             return redirect(url_for('login'))
 
 
